@@ -4,6 +4,7 @@ from __future__ import print_function
 import tensorflow as tf
 from scipy import misc
 import cv2
+from google.colab.patches import cv2_imshow
 import numpy as np
 import facenet
 import detect_face
@@ -126,7 +127,7 @@ with tf.Graph().as_default():
                 else:
                     print('Alignment Failure')
             # c+=1
-            cv2.imshow('Video', frame)
+            cv2_imshow(frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
