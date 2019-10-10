@@ -4,6 +4,7 @@ from __future__ import print_function
 import tensorflow as tf
 from scipy import misc
 import cv2
+from google.colab.patches import cv2_imshow
 import numpy as np
 import facenet
 import detect_face
@@ -125,7 +126,7 @@ with tf.Graph().as_default():
                                         1, (0, 0, 255), thickness=1, lineType=2)
             else:
                 print('Unable to align')
-        cv2.imshow('Image', frame)
+        cv2_imshow(frame)
 
         if cv2.waitKey(1000000) & 0xFF == ord('q'):
             sys.exit("Thanks")
