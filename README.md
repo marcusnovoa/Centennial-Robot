@@ -1,2 +1,2 @@
 # Centennial Robot
-This the Github for the Centennial Ball Robot for the UNiversoty of New Haven
+This the Github for the Centennial Ball Robot for the University of New Haven
