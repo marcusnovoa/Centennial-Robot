@@ -6,21 +6,20 @@ import json
 from ibm_watson import AssistantV2
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-authenticator = IAMAuthenticator('OmqmIsjTLK5USgmfReFMLz6P58fkXR5PdMlEb0_Fu1Cg')
+authenticator = IAMAuthenticator('token')
 assistant = AssistantV2(
     version='2019-11-19',  # ?
     authenticator=authenticator
 )
 
 assistant.set_service_url('https://gateway.watsonplatform.net/assistant/api')
-assistant_id = 'ee080c9a-51ec-4186-b777-afd2d568ac77'
+assistant_id = 'token'
 session = assistant.create_session(assistant_id)
 session_id = (str(session)[41:77])  # grab the session's ID
 
 input("Press Enter when ready...")
 
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "D:\\speech\\Text To Speech-53bd15a56d28.json"
-# https://console.developers.google.com/apis/api/texttospeech.googleapis.com/overview?project=28206284917
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "dir to file"
 
 # client = texttospeech.TextToSpeechClient()
 
@@ -48,7 +47,7 @@ while quit_check is not True:
                 session_id=session_id,
                 input={
                     'message_type': 'text',
-                    'text': 'hi charlie'
+                    'text': text
                 }
             ).get_result()
 
