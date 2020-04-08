@@ -57,7 +57,7 @@ detector = MTCNN()
 # Start webcam
 print("[ INFO ] Starting webcam...")
 cap = cv2.VideoCapture(0)
-cap.set()
+
 
 while True: 
     # Capture frame-by-frame
