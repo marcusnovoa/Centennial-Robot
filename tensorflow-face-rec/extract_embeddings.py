@@ -12,7 +12,7 @@ def get_embedding(model, face_pixels):
 	# standardize pixel values across channels (global)
 	mean, std = face_pixels.mean(), face_pixels.std()
 	face_pixels = (face_pixels - mean) / std
-	# transform face into one sample
+	# transform face into one sample 
 	samples = expand_dims(face_pixels, axis=0)
 	# make prediction to get embedding
 	yhat = model.predict(samples)

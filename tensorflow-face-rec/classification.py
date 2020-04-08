@@ -20,9 +20,6 @@ in_encoder = Normalizer(norm='l2')
 trainX = in_encoder.transform(trainX)
 testX = in_encoder.transform(testX)
 
-# print("\nin_encoder: ", in_encoder)
-# print("\ntrainX: ", trainX)
-# print("\ntestX: ", testX)
 
 # label encode targets
 out_encoder = LabelEncoder()
@@ -41,15 +38,6 @@ random_face_pixels = testX_faces[selection]
 random_face_emb = testX[selection]
 random_face_class = testy[selection]
 random_face_name = out_encoder.inverse_transform([random_face_class])
-
-# print("testX: ", testX)
-# print("\nselection: ", selection)
-# print("\ntestX.shape[0]: ", testX.shape[0])
-# print("\nface_pixels: ", random_face_pixels)
-# print("\ntestX[15]: ", testX[5])
-# print("\nface_emb: ", random_face_emb)
-# print("\nface_class: ", random_face_class)
-# print("\nface_name: ", random_face_name)
 
 # prediction for the face
 samples = expand_dims(random_face_emb, axis=0)
