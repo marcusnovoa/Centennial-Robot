@@ -1,21 +1,14 @@
 from numpy import load
 from numpy import expand_dims
-from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVC
-from matplotlib import cm
 from numpy import asarray
 from mtcnn.mtcnn import MTCNN
-
 from imutils.video import VideoStream
 from keras.models import load_model
-import numpy as np
-import argparse
-import imutils
-import time
 import cv2
-# from extract_embeddings import get_embedding
+from collections import namedtuple
 from PIL import Image
 
 # get the face embedding for one face
@@ -55,11 +48,14 @@ model.fit(trainX, trainy)           #### Magic Happens HERE!!!!!******
 detector = MTCNN()
 
 # Start webcam
-print("[ INFO ] Starting webcam...")
 cap = cv2.VideoCapture(0)
-cap.set()
+print("[ INFO ] Starting webcam...")
 
-while True: 
+ct_frame = 0
+Person = namedtuple('Person', ['name', 'probability'])
+lt_personSample = []
+
+while ct_frame < 10: 
     # Capture frame-by-frame
     __, frame = cap.read()    # __, is necessary
     
@@ -100,14 +96,22 @@ while True:
             class_probability = yhat_prob[0,class_index] * 100
             predict_names = out_encoder.inverse_transform(yhat_class)
             print('Predicted: %s (%.3f)' % (predict_names[0], class_probability))
+            lt_personSample.append(Person(predict_names[0], class_probability))
+
     else:
         print("No face detected")
+        
     #display resulting frame
     cv2.imshow('frame',frame)
+
     if cv2.waitKey(1) &0xFF == ord(' '):
         print("[ INFO ] Ending stream...")
         break
+    
+    ct_frame += 1
 
 # When everything's done, release capture
 cap.release()
 cv2.destroyAllWindows()
+
+print(lt_personSample)
