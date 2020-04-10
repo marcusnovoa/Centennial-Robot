@@ -118,7 +118,6 @@ while ct_frame < 10:
 # When everything's done, release capture
 cap.release()
 cv2.destroyAllWindows()
-<<<<<<< HEAD:tensorflow-face-rec/classification_webcam.py
 
 probMean = mean(Person.probability for Person in lt_personSample)
 highestFreq = 0
@@ -131,5 +130,3 @@ for person in lt_personSample:
         name = person.name
 
 print("Person: {} with {}".format(name, mean(Person.probability for Person in lt_personSample)))
-=======
->>>>>>> 5dfbb077e30ffae2284899e7485a4b09759891c8:tensorflow-face-rec/webcam_test.py
