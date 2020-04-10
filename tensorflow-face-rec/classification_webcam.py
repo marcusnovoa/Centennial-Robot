@@ -7,6 +7,7 @@ from numpy import asarray
 from mtcnn.mtcnn import MTCNN
 from imutils.video import VideoStream
 from keras.models import load_model
+from statistics import mean
 import cv2
 from collections import namedtuple
 from PIL import Image
@@ -43,7 +44,7 @@ testy = out_encoder.transform(testy)
 
 # fit model
 model = SVC(kernel='linear', probability=True)
-model.fit(trainX, trainy)           #### Magic Happens HERE!!!!!******
+model.fit(trainX, trainy)
 
 detector = MTCNN()
 
@@ -114,4 +115,14 @@ while ct_frame < 10:
 cap.release()
 cv2.destroyAllWindows()
 
-print(lt_personSample)
+probMean = mean(Person.probability for Person in lt_personSample)
+highestFreq = 0
+name = ""
+for person in lt_personSample:
+    freq = sum(p.name == person.name for p in lt_personSample)
+    if person.name == name: continue
+    if freq > highestFreq:
+        highestFreq = freq
+        name = person.name
+
+print("Person: {} with {}".format(name, mean(Person.probability for Person in lt_personSample)))
