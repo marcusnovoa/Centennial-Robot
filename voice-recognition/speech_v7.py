@@ -33,15 +33,15 @@ def releaseResponse_Normal(response_text=""):
 
 
 # Authenticate the assistant via authID
-authenticator = IAMAuthenticator('OmqmIsjTLK5USgmfReFMLz6P58fkXR5PdMlEb0_Fu1Cg')
+authenticator = IAMAuthenticator('WATSON ASSISTANT API KEY HERE')
 assistant = AssistantV2(
-    version='2019-11-19',
+    version='ASSISTANT VERSION DATE HERE',
     authenticator=authenticator
 )
 
 # Set the API location url and the assistant's ID
-assistant.set_service_url('https://gateway.watsonplatform.net/assistant/api')
-assistant_id = 'ee080c9a-51ec-4186-b777-afd2d568ac77'
+assistant.set_service_url('WATSON SERVICE URL HERE')
+assistant_id = 'WATSON ASSISTANT ID HERE'
 
 # Create the assistant's session (new session is generated each time the code is run)
 new_session = assistant.create_session(assistant_id)
